@@ -2,14 +2,20 @@
 Console.WriteLine("Hello, World! Part 15");
 
 
-var numbers = new List<int> { 1, 2, 3, 4, 5, 6 };
-Console.Write("List: ");
-foreach (var number in numbers)
+// Specify the data source.
+List<int> scores = new List<int> { 97, 92, 81, 60 };
+
+
+// Define the query expression.
+IEnumerable<int> scoreQuery =
+    from score in scores
+    where score > 80 && score % 2 == 0
+    select score;
+
+// Execute the query.
+foreach (var i in scoreQuery)
 {
-    if (numbers.IndexOf(number) == numbers.Count - 1)
-    { Console.Write(number); }
-    else
-    { Console.Write($"{number} "); }
+    Console.Write(i + " ");
 }
-Console.WriteLine();
-Console.WriteLine($"Check index of 4 in the list: {numbers.IndexOf(4)}");
+
+// Output: 92
